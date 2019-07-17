@@ -1,21 +1,40 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav class="navbar navbar-dark bg-dark">
+    <a href="/" class="navbar-brand">
+    Angular C.R.U.D
+</a>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-4">
+            <ul class="list-group">
+                <li *ngFor="let u of userArray" class="list-group-item list-group-item-action" (click)="toEdit(u)" [class.active]="u == selectedUser">
+                    <span class="badge badge-primary">{{u.id}}</span> {{u.username}} - {{u.country}}
+                </li>
+            </ul>
 
-<router-outlet></router-outlet>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="card-title">
+                        <strong>Add an User</strong>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="selectedUser.username" placeholder="Insert a Username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="selectedUser.country" placeholder="Insert a Country" class="form-control" required>
+                    </div>
+                    <button class="btn btn-primary mr-1" (click)="addOrEdit()">
+                           Add
+                        </button>
+                    <button *ngIf="selectedUser.id !== 0" (click)="delete()" class="btn btn-danger ml-1">
+                      Delete
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 ">
+            <img width="300 " alt="Angular Logo " src="https://noticias.mapfre.com/wp-content/uploads/2017/10/Icono-libro.png ">
+        </div>
+    </div>
+</div>
